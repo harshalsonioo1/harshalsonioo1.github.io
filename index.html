@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
+		<title>Smoothed D3.js Radar Chart</title>
+
+		<!-- Google fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+		<!-- D3.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+		
+		<style>
+			body {
+				font-family: 'Open Sans', sans-serif;
+				font-size: 11px;
+				font-weight: 300;
+				fill: #242424;
+				text-align: center;
+				text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+				cursor: default;
+			}
+			
+			.legend {
+				font-family: 'Raleway', sans-serif;
+				fill: #333333;
+			}
+			
+			.tooltip {
+				fill: #333333;
+			}
+		</style>
+	
+	</head>
+	<body>
+		<h1>Core Competencies</h1>
+		<div class="radarChart"></div>
+		
+		<div>
+		<p style="color:#CC333F;" >Red: Without coffee</p>
+		<p style="color:#00A0B0;"> Blue: With coffee</p>
+		</div>
+		<script src="radarChart.js"></script>	
+		<script>
+      
+      
+			////////////////////////////////////////////////////////////// 
+			//////////////////////// Set-Up ////////////////////////////// 
+			////////////////////////////////////////////////////////////// 
+
+			var margin = {top: 100, right: 100, bottom: 100, left: 100},
+				width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+				height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+					
+			////////////////////////////////////////////////////////////// 
+			////////////////////////// Data ////////////////////////////// 
+			////////////////////////////////////////////////////////////// 
+
+			var data = [
+					  [//Without Coffee
+						{axis:"Analytics",value:0.72},
+						{axis:"Data Science",value:0.88},
+						{axis:"Statistics",value:0.69},
+						{axis:"Machine Learning",value:0.90},
+						{axis:"Deep Learning",value:0.95},
+						{axis:"Data Engieering",value:0.75},
+						{axis:"Web Development",value:0.77},
+						{axis:"Cloud Computing",value:0.86},
+						{axis:"Creativity",value:0.90},
+						
+									
+					  ],
+					  
+					  [//With Coffee
+						{axis:"Analytics",value:0.82},
+						{axis:"Data Science",value:0.80},
+						{axis:"Statistics",value:0.68},
+						{axis:"Machine Learning",value:0.92},
+						{axis:"Deep Learning",value:0.94},
+						{axis:"Data Engieering",value:0.76},
+						{axis:"Web Development",value:0.85},
+					
+						{axis:"Cloud Computing",value:0.95},
+						{axis:"Creativity",value:1.0},
+									
+					  ]
+					];
+			////////////////////////////////////////////////////////////// 
+			//////////////////// Draw the Chart ////////////////////////// 
+			////////////////////////////////////////////////////////////// 
+
+			var color = d3.scale.ordinal()
+				.range(["#CC333F","#00A0B0"]);
+				
+			var radarChartOptions = {
+			  w: width,
+			  h: height,
+			  margin: margin,
+			  maxValue: 1.0,
+			  levels: 5,
+			  roundStrokes: true,
+			  color: color
+			};
+			//Call function to draw the Radar chart
+			RadarChart(".radarChart", data, radarChartOptions);
+		</script>
+	</body>
+</html>
